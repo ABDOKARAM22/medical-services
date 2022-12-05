@@ -11,5 +11,3 @@ define('DIR', __DIR__ . '/');
 
 ##connect to database...
 require_once(DIR.'func/db.php');
-
-
