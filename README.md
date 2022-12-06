@@ -1,5 +1,5 @@
 # medical-services
-<br>
+<hr>
 A simple project to request medical services by php_mysql
  With the admin page that has capabilities..
  
@@ -7,8 +7,8 @@ A simple project to request medical services by php_mysql
 - Add, delete and modify the cities in which services are available
 - Add, delete and modify available medical services
 - View all required orders
-<br>
+<hr>
 to login and test the project
-............
-admin_email = Abdo@example.com
-passowrd = 12345678
+
+- admin_email = Abdo@example.com
+- passowrd = 12345678
