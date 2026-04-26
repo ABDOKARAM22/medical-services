@@ -1,52 +1,71 @@
-<?php require '../../config.php';  ?>
+<?php require '../../config.php'; ?>
 
-<?php require DIRA . 'inc/header.php';  ?>
-<?php require DIRA . 'inc/nav.php';  ?>
-
+<?php require DIRA . 'inc/header.php'; ?>
+<?php require DIRA . 'inc/nav.php'; ?>
 
 <div class="col-sm-12">
-                <?php if(isset($_SESSION["err_edit"])){ ?>
-                
-                     <div class="form-group">
-                            <h3 class="alert alert-danger text-center"><?php echo $_SESSION["err_edit"]; ?></h3>
-                        </div>
-                    <?php
-                        unset($_SESSION["err_edit"]);
-                    } ?>
+
+    <?php if (!empty($_SESSION["err_edit"])) { ?>
+        <div class="form-group">
+            <h3 class="alert alert-danger text-center">
+                <?php echo htmlspecialchars($_SESSION["err_edit"]); ?>
+            </h3>
+        </div>
+        <?php unset($_SESSION["err_edit"]); ?>
+    <?php } ?>
+
     <h3 class="text-center p-3 bg-primary text-white">View All Admins</h3>
+
     <table class="table table-dark table-bordered">
         <thead>
             <tr class="text-center">
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Type for Admin</th>
-                <th scope="col">Action</th>
-
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Action</th>
             </tr>
         </thead>
-        <?php $all_admin = get_rwos("admin");
-        $x = 1;
-        foreach ($all_admin as $row) { ?>
-            <tbody>
-                <tr class="text-center">
-                    <td scope="row"><?php echo $x++ ?></td>
-                    <td class="text-center"><?php echo $row["admin_name"] ?></td>
-                    <td class="text-center"><?php echo $row["admin_email"] ?></td>
-                    <td class="text-center"><?php echo $row["admin_type"] ?></td>
-                    <?php if ($row["admin_type"] !== "super_admin") {   ?>
-                        <td class="text-center">
-                            <a href="<?php echo BURLA . 'setting/edit.php?id=' . $row["admin_id"] ?>" class="btn btn-info">Edit</a>
-                            <a href=" <?php echo BURLA . 'setting/delet.php?id=' . $row["admin_id"] ?>" class="btn btn-danger delete" data-field="city_id" data-id="" data-table="cities">Delete</a>
-                        </td>
+
+        <tbody>
+        <?php
+            $all_admin = get_rwos("admin"); 
+            $x = 1;
+
+            foreach ($all_admin as $row) {
+        ?>
+            <tr class="text-center">
+                <td><?php echo $x++; ?></td>
+                <td><?php echo htmlspecialchars($row["admin_name"]); ?></td>
+                <td><?php echo htmlspecialchars($row["admin_email"]); ?></td>
+                <td><?php echo htmlspecialchars($row["admin_type"]); ?></td>
+
+                <td>
+                    <?php if ($row["admin_type"] !== "Owner") { ?>
+                        
+                        <a href="<?php echo BURLA . 'setting/edit.php?id=' . $row["admin_id"]; ?>"
+                           class="btn btn-info">
+                            Edit
+                        </a>
+
+                        <!-- DELETE SAFE (POST instead of GET) -->
+                        <form action="<?php echo BURLA . 'setting/delete.php'; ?>" method="POST" style="display:inline;">
+                            <input type="hidden" name="id" value="<?php echo $row["admin_id"]; ?>">
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure?');">
+                                Delete
+                            </button>
+                        </form>
+
+                    <?php } else { ?>
+                        <span class="text-warning">Owner</span>
                     <?php } ?>
-
-                </tr>
-
-            </tbody>
+                </td>
+            </tr>
         <?php } ?>
+        </tbody>
+
     </table>
 </div>
 
-
-<?php require DIRA . 'inc/footer.php';  ?>
+<?php require DIRA . 'inc/footer.php'; ?>
