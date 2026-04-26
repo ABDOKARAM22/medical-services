@@ -1,5 +1,7 @@
-<?php require 'config.php';  ?>
-<?php require DIR . 'Func/validat.php';  ?>
+<?php
+require 'config.php'; 
+require DIR . 'Func/validat.php'; 
+?>
 
 <!doctype html>
 <html lang="en">

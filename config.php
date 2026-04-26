@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-define('BURL', 'http://localhost:8080/medical-project/');
-define('BURLA', 'http://localhost:8080/medical-project/admin/');
-define('ASSETS', 'http://localhost:8080/medical-project/assets/');
+define('BURL', 'http://localhost/New_folder/medical-services/');
+define('BURLA', 'http://localhost/New_folder/medical-services/admin/');
+define('ASSETS', 'http://localhost/New_folder/medical-services/assets/');
 
 define('DIRA', __DIR__ . '/admin/');
 define('DIR', __DIR__ . '/');
