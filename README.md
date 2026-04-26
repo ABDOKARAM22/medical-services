@@ -10,5 +10,5 @@ A simple project to request medical services by php_mysql
 <hr>
 to login and test the project
 
-- admin_email = Abdo@example.com
-- passowrd = 12345678
+- admin_email = admin@medical.com
+- passowrd = admin123
